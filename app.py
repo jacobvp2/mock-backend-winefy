@@ -1,13 +1,16 @@
 from flask import Flask, render_template, request, redirect, url_for,jsonify
 from arbitraryFunction import definePersonality
+from flask_cors import CORS
+
 app = Flask(__name__)
+CORS(app)
 
 @app.route("/")
 def home():
     return "Welcome to our backend for the Twitter Algorithm! Nothing to see here. Try sending a POST \
     request to /predict to recieve a personality type based on Twitter data analysis!"
 
-@app.route('/predict', methods=['GET', 'POST'])
+@app.route('/predict', methods=['POST'])
 def testfn():
     # Post request
     if request.method == 'POST':
